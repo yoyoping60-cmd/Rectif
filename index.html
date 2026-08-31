@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#15181D">
+<title>Calculateur libre — rectification</title>
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Calculateur%20rectification%22%2C%22short_name%22%3A%22Rectif%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%2315181D%22%2C%22theme_color%22%3A%22%2315181D%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAF%2F0lEQVR4nO3dS44URxSF4cCy2IElTywxZB1sCImFILEh1sGQdTCxB7hQdUJR%2BYjHOff837xFKuP%2BGZFNd%2FWrv%2F7%2B598GhPpj9QUAKxEAohEAohEAohEAohEAohEAohEAohEAohEAohEAohEAohEAohEAohEAohFAmLef37e3n9%2BvvgwZBBCKEL57xW%2BE5Xg28F%2FefZp0JTrYAfBD4q5AAPhJUggcgUJcGejKRyN2ADxVeUcgAOxWMQKOQIF6DHKVYxEBBLsaQoUICADRIRAAfkj8ThEB4CdnQ3CMgADwUEIIBDDY14%2BvL339mw%2FfOl3JeWdCcImAADq5OuhHzQ6jagQEcNLsgX9mVhBHQ1CPgAAOUBv6R0bHUCkCAnjCZegfGRVDlQgI4AH3wd9SCEExAgLYqDb4WyNCcI6AAP5XffC3eofgGkF8AGmDv9UzBMcIYgNIH%2FytFSEoRBAXAIP%2Fe71CcIkg6jfCGP7net2jvYO9%2BrfMYgJg%2BPdLiqD8EYjBv6bHkUj5OFR6B2D4r6t%2BD8sGUH3hZrp6L5WPQiUDYPj7qxpBqXcABn%2BOK%2B8Fau8DZXYAhn%2BeK%2Fd69ff9t0oEwPDPN%2FqezzoK2QfA8K9z9t4rvQ9YB8Dwrzc6gtGsA4C3PRGM3gVsA%2BDpr8P5fcAyAIZfj%2BtRyC4Ahl%2FXyAhG7QJWATD8%2BtzWyCoA1LVqF7AJwO3JksxprSwCcLqh%2BO7Mmq3YBeQDYPh9OaydfADIMnsXkA7A4QmC31NfQ%2BkAkGnmf47JBqD%2B5MB%2BI9ay1zFINgBki%2F6NMJ7%2B9ajuApIBAK3N2QXkAuDpX5fi2soFABxx9RgkFYDiEwJ9HV3j0ccgqQCA2WQ%2BGCvh6b%2F3A6W4Fy%2FtOeac3Sn%2BPPVV2O3Mp6jdf01CDM98efdp2G%2BEEcAAPf%2FcEDGMJfEOUGlhR%2F6V9tF%2FAX4mlTWXCKCCNx%2B%2BTRnQWf%2BOmmdn%2FLNHJALoYMVAJkYwwvIAVLbCs1YOonsECmu%2FPABnCgOocA3OCOAkpcFTupaVzrwHEMAJigOneE29jfixiKUBKJwBj1IeNOVre2T1DLADIBoBHODwhHW4RiUEsJPTYDld62oEgGgEACu9fyRiWQCr3%2F6PcDxSOF3zyllgB0A0AkA0AnjC6Six5XztsxAAohEAohEAohEAohEAohEAohEAohEAohEAohHAE04%2FtLflfO2zEACiEQCiLQvA6Qe1HI8STte8chbYAWDl2W98Hf3sIAJANALYyelI4XStqxHAAQ6D5XCNSggA0Zb%2FlUjHJ5bqd7BS7%2BX9i%2FHRl2D%2BSN4JXz%2B%2BlovAcfh7ufKp0RyBTlIaOKVrcUMAFygMnsI1OFsegNpR4qiVA%2Bg%2B%2FAprvzyAClYMovvwq%2BAluJPbQI5%2BqjH4fUnsAApbYS8jB7TS8KusOTvAAPeDenWhKw29IgIY7EwMDP08y%2F8n%2BB4Ln0Hl%2BNOayDsAsIpUAEpPBoyhtsZSAQCzyQWg9oRAP4prKxcAMJNkAIpPClyjuqaSAQCzyAag%2BsTAccprKRsAMIN0AMpPDuyjvobSAQCjyQeg%2FgTBYw5rJx9Aax43Ei%2B5rJlFAK353FB4rZVNAMAIVgE4PVlSua2RVQCt%2Bd3gJI5rYxdAa543ujrXNbEMoDXfG16R81rYBgD0YB2A85OnCvc1sA6gNf8FcFbh3tsH0FqNhXBT5Z6XCKC1OgvioNK9lvpgrF74gK0xKg3%2BTZkd4F7FhVqt6j0tGUBrdRdshcr3smwArdVeuFmq38OS7wC%2FwnvBMdUH%2F6b0DnAvZUF7SLpXMQG0lrWwZ6Xdo5gj0BZHopfSBv8mNoCb9BBSB%2F8mPoCbtBDSB%2F%2BGADaqh8Dgv0QAD1QLgcH%2FNQJ4wj0EBv%2F3COAAlxgY%2Bv0I4CS1GBj6cwigk9lBMPB9EMBgV8Ng0MciAESL%2BlkgYIsAEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEI0AEO0%2F82ERM0bGiTQAAAAASUVORK5CYII%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%20maskable%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAASPUlEQVR4nO3dTY6bt7aGUTkIPAMD7hhwM%2BPIhAJ4IAYyoYwjTY%2FDHZ%2BGj%2BOqcpVKP%2BTHvfmu1buNCyuSuPmIlOq8eff%2Bw7cTABDlt9UPAAA4ngAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAL9vvoBAHTxxz9%2FPfq%2F%2F%2F3z70WPBO7nBADgRn%2F889cvUQBdOAEAuNPDCHAqQBdv3r3%2F8G31gwCo7tpP%2BkKA6lwBAEzgeoDqnAAAvGLURu5UgEqcAAAcxKkAlQgAgIMJASpwBQBwxhEbtasBVnACALCYEwFWEAAARQgBjuQKAOAFqzdjVwPM5AQAoCgnAszkBADgGRU3XicCjOQEAKAJJwKMJAAAmhECjCAAAJ7osrl2eZzUJAAAGnMawK0EAMAGhADXEgAAD3TfRLs%2Ffo4jAAA24zSASwgAgAd2%2Bq29COAcfwgI4IxdNtGdwoYxBADABYQAuxEAAFfqHgMigNNJAADcrHMIiAAEAMAAXWNACOQSAAADdQwBEZBJAABMIASoTgAATNQtBERADgEAcIBOISACMggAgAMJAaoQAAALdAkBEbAvAQCwUIcQEAF7EgAABQgBjuZ%2FDRCggA6ba4dI4XJOAACKqb7RdogVXicAYBNfPr895N%2F5%2BOnrIf8OtUNABPQnAKC4ozb20YTCOEKAGQQAFNF1o7%2BWMLiNCGA0AQAHS9noryUMLlM1BERAPwIAJrPh30YQvEwEMIIAgMFs%2BHMIgl9VDAER0IcAgDvZ8NcQBN%2BJAG4lAOBKNvya0oNACHAtAQAXsOn3khoDIoBrCAB4gU1%2FD4kxUC0EREBNAgAesOnvLSkGRACvEQBwsvGnSQkBEcA5AoBYNn1Op4wYqBQCIqAOAUAcGz%2FP2T0ERABPCQAi2PS5xq4xIAJ4SACwNRs%2F9xACc4mAtQQAW7LxM9KOISACEABsxcbPTLuFgAjIJgDYgo2fI%2B0UAiIglwCgNRs%2FKwmBsUTAsQQALdn4qWSXEBABWQQArdj4qWyHEBABOQQALdj46aR7CIiADL%2BtfgDwGps%2F3XR%2Fz1bYfCtEyO6cAFBW9yEKp1Pv04DVm3CFENmZAKAcGz87EgK3EQHzuAKgFJs%2Fu%2Br83l65Ca8%2BhdiZEwBK6Dwc4VpdTwOcBOxFALCUjZ9kHUNABOzDFQDL2PxJ13ENuA7YhxMADtdx6MFs3U4DnAT05wSAQ9n84Xnd1oZNuD8BwGG6DTg4Wrc1sioCXAWM4QqA6boNNaig05XAqg3ZKcR9nAAwlc0fbtNp7TgJ6EkAME2nAQYVdVpDIqAfVwAM12loQRddrgRWbMiuAm7jBIChbP4wR5e1tWIzdgpwGwHAMF0GFHRljb1MBFzPFQB3M5TgeNWvBPwyoD4nANzF5g9rVF97NuL6BAA3qz6AYHfV16DvA9QmALhJ9cEDKaqvRRFQlwDgatUHDqSpviZFQE0CgKtUHzSQqvra9J2AevwKgItUHy7AT1V%2FIeCPBNXiBIBX2fyhl6pr1lVALQKAs6oOEuC8qmvXJ%2FI6BAAvqjpAgMtUXcNHR4BTgOcJAJ5VdXAA16m6lkXAegKAX1QdGMBtrOnvRMBjAoBHDArYU8W17fsAawkA%2FlNxQADjVFzjrgLWEQCcTqeagwEYr%2BJadxKwhgCg5EAA5klf804BvhMA4dIHAaSqtvZdBRxPAASrNgCAY1WbAa4CjiUAQlVb%2BMAa1WbBkRGQfgogAACIlRwBAiBQteIH1qo2E1wFHEMAhKm20IEaqs0GVwHzCYAg1RY4UIsZkUUAhLCwgUtUmhVOAeYSAAEqLWigvkozQwTMIwA2V2khA32YHfsTAACU5hRgDgGwMQUP3KPSDPHTwPEEwKYqLVygr8RZknIKIAA2lLhggXmqzBSnAGMJAADaOCoCEk4BBMBmqpQ6sBezZT8CYCMWKDBTlRnjFGAMAbCJKgsT2JtZsw8BAEA7TgHuJwA2oMiBI5k5exAAzVmIwAoVZo9TgPsIgMYqLEAgV4UZ5G8D3E4AAMArdjwFEABNVShvgAqzyCnAbQRAQxUWHMAPKTNpt1MAAQBAe04BricAmkkpbaCXlNm00ymAAABgC04BriMAGkkpbKCnlBm1yymAAGgiZWEBva2eVU4BLicAACCQAGhgdVEDXGP1zDriFGCHawABAACBBEBxq0sa4BarZ5dTgNcJgMJWLyCAe5hhtQkAALbkFOA8AVCUcgZ2YJbVJQAA2Ja%2FC%2FAyAVCQYgZ2svtM63oNIAAAIJAAKGb3UgYyrZxtvgz4PAEAAIEEQCE%2B%2FQM72%2F0UoBsBAAADdLsGEABF%2BPQPJDDr6hAAAERwDfCYAChAEQNJdp55na4BBAAAMZwC%2FCQAFtu5hAFeYvatJwAAYKAu1wACYCEFDCRbNQNdA3wnAAAgkAAAgME6XAMIgEUc%2FwO4BlhJAABAIAGwgE%2F%2FAD%2FtegpQ%2FRpAAABAIAEAAIF%2BX%2F0A0jj%2B50gfP3296%2F%2Ff%2B5WjfPn89u73K9d58%2B79h2%2BrH0QSA5VZjhqe3sPMsioAZt%2FVV%2F3FgROAAxmcjLRqWD79d72vGcUpwLEEADRScTg%2BfExiAPpwBXAgw5FbVNz0L%2BH9zi1cAxzHrwAOYhhyrY%2Bfvrbd%2FE%2Bn%2Fo%2BfNczK47gCgEJ23DBdEUBNTgCgiB03%2F6cS%2FhvpqeIR%2FWy%2BA3AAn3o4J3VTtC44Z8W6SPsegCsAWCR14%2F%2Fhx3%2B%2FEIA1XAHAAumb%2F0OeC1jDFcBkPt3wkM3uPOuFh3a7Bqh2BeAEAA5i83%2Bd5wiOIwDgADa2y3mu2NXsLxley5cAYSKb2W18QRDmcwIwkeGVzeZ%2FP89hthUztNo9%2FUwCACawcY3juYQ5BAAMZsMaz3PKLip9D0AAwEA2qnk8tzCWAJjE%2FX8eG9R8nuM8vgcwjwCAAWxMx%2FFcwxgCAO5kQzqe5xzuJwDgDjaidTz3dFXli4ACYAL3%2FwDjmKlzCAC4kU%2Bg63kNmCXhi4ACAG5g46nDawG3EQBwJRtOPV4TuJ4AGMxdFcB4Zut4AgCu4JNmXV4buI4AgAvZYOrzGtFFhZ8CCgAAeMbuvwQQAHABnyz78FrBZQQAAAQSAAP5luqefKLsx2u2JzN2LAEAZ9hI%2BvLawXkCAAACCQAAWGD1TwEFALzAEXJ%2FXkPutfNPAQUAAAQSAIP4dupefHLch9dyL2btOAIAAAIJAAAIJADgCUfG%2B%2FGawq8EAAAEEgAAEEgAwAOOivfltYXHBAAABBIAALDIyj8HLAAA4Ixd%2FxywABjAX6bagzvi%2FXmN92DmjiEAACCQAACAQAIAAAIJAAAIJADg5MthSbzW8J0AAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAOB0On35%2FHb1Q%2BAgXmv4TgAAQCABAACBBAAABBIAABBIAAzw8dPX1Q%2BBAXw5bH9e4z2YuWMIAAA4449%2F%2Flr9EKYQAACwyL9%2F%2Fr3s3xYAABBIAMAD7oj35bWFxwQAAAQSAAAQSADAE46K9%2BM1hV8JAAAIJAAAIJAAGMRfptqLI%2BN9eC33YtaOIwAAIJAAgBf45Nif15B77fpngE8nAQAAS6z8M8CnkwAAgEgCAM5whNyX1w7OEwAD%2BXbqnmwk%2FXjN9mTGjiUAACCQAIAL%2BETZh9cKLiMAAOAZO%2F8E8HQSAHAxnyzr8xrRxeqfAJ5OAgCuYoOpy2sD1xEAg%2FmWKsB4K2ZrhU%2FpM%2F2%2B%2BgFAN18%2BvxV6xfj0zyzPRcAu3w0QAHADEVCHzZ%2BjvXQy0C0MBADcSASsZ%2FOnkm5hIAAm%2BPjpq8EEMEj30K76XQJfAoQ7CL11PPdwHwEAd7IRHc9zDvcTADCADek4nmsYQwBM0v3OiuvZmObzHOcxS%2BcRADCQDWoezy2MJQBgMBvVeJ5TGE8AwAQ2rHE8lzCHAJjI3VU2G9f9PIfZzNC5%2FCEgmOjHBmaQXcfGD%2FM5AYAD2NAu57mCYwgAOIiN7XWeIzjOm3fvP3xb%2FSB2Z6jxlCuBx6wRnrJG5nMCAAvY8H7yXMAavgQIi6R%2FQdDGD2u5AjiIYcdrUkLAWuA1KWthNVcAUETCxpjw3whduAKAQh5ukLt8CrLpQ02uAA5kEHKLriHg%2Fc4tur7fO3ICAMV1OhWw6UMfAgAaqRgDNn3oyRXAwQxLZjkqCLyHmaVK1KZwAgCbeG5jvneg2uxhX04AFjBUAR7z6f94%2Fg4AAAQSAAAQSAAs4KgL4CczcQ0BAACBBMAiihfALFxJAABAIAEAAIEEwEKOvoBkZuBaAgAAAgmAxRQwkMjsW08AAEAgAVCAEgaSmHk1CAAACCQAilDEQAKzrg4BAACBBEAhyhjYmRlXiwAAgEACoBiFDOzIbKtHAABAIAFQkFIGdmKm1SQAACCQAChKMQM7MMvqEgAAEEgAFKacgc7MsNoEQHEWENCR2VWfAACAQAKgASUNdGJm9SAAACCQAGhCUQMdmFV9CIBGLCygMjOqFwEAAIEEQDMKG6jIbOpHAABAIAHQkNIGKjGTehIATVlwQAVmUV8CAAACCYDGlDewkhnUmwBozgIEVjB7%2BhMAG7AQgSOZOXsQAAAQSABsQpEDRzBr9iEANmJhAjOZMXsRAJuxQIEZzJb9CAAACCQANqTUgZHMlD0JgE1ZsMAIZsm%2BBMDGLFzgHmbI3gQAAAQSAJtT8MAtzI79CYAAFjJwDTMjgwAIYUEDlzArcgiAIBY2cI4ZkUUAhLHAgeeYDXkEQCALHXjITMgkAAAgkAAIpfiB08ksSCYAgln4kM0MyCYAwhkAkMnaRwBgEEAYa57TSQDwfwYCZLDW%2BUEA8B%2BDAfZmjfOQAOARAwL2ZG3zlADgFwYF7MWa5jkCgGcZGLAHa5mXCABeZHBAb9Yw5wgAzjJAoCdrl9cIAF5lkEAv1iyXePPu%2FYdvqx8EfXz5%2FHb1QwBeYOPnGk4AuIoBAzVZm1xLAHA1gwZqsSa5hQDgJgYO1GAtcisBwM0MHljLGuQeAoC7GECwhrXHvfwKgGH8QgDms%2FEzihMAhjGYYC5rjJEEAEMZUDCHtcVorgCYxpUA3M%2FGzyxOAJjG4IL7WEPMJACYygCD21g7zOYKgMO4EoDX2fg5ihMADmOwwXnWCEcSABzKgIPnWRsczRUAy7gSABs%2F6zgBYBmDj3TWACs5AaAEpwEksfFTgQCgFCHAzmz8VOIKgFIMSHblvU01TgAoy2kAO7DxU5UAoDwhQEc2fqpzBUB5BindeM%2FSgRMAWnEaQGU2fjoRALQkBKjExk9HAoDWhAAr2fjpTACwBSHAkWz87EAAsBUhwEw2fnYiANiSEGAkGz87EgBsTQhwDxs%2FOxMARBACXMPGTwIBQBwxwHNs%2BqQRAMQSApxONn5yCQA4iYE0Nn0QAPCIENibjR9%2BEgDwAjGwB5s%2BPE8AwAXEQC82fXidAIAriYGabPpwHQEAdxIEa9jw4T4CAAYTBHPY8GEsAQCTCYLb2PBhLgEABxMEz7Phw7EEABSREgY2eqhBAEBxXcPARg%2B1CQDYxFGhYGOHPQgAAAj02%2BoHAAAcTwAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAE%2Bh%2BIOmwe%2BicnmQAAAABJRU5ErkJggg%3D%3D%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rectif">
+<meta name="mobile-web-app-capable" content="yes">
+
+<style>
+:root{
+  --bg:#15181D; --surface:#1E232A; --surface2:#272D36; --line:#333B46;
+  --text:#EDF0F3; --muted:#98A2AE; --dim:#6B7683;
+  --set:#F5A623; --ok:#3DD68C; --bad:#F0554F;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.4;padding-bottom:3rem;font-variant-numeric:tabular-nums}
+.wrap{max-width:640px;margin:0 auto;padding:0 14px}
+
+.top{background:var(--surface);border-bottom:1px solid var(--line);
+  padding:calc(11px + env(safe-area-inset-top)) 0 11px}
+.pin{padding-top:11px}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.top h1{font-size:.95rem;font-weight:700}
+.top button{background:var(--surface2);border:1px solid var(--line);border-radius:7px;
+  padding:7px 12px;color:var(--muted);font-size:.72rem;font-family:inherit;cursor:pointer}
+.top button:active{background:var(--set);color:#15181D}
+
+/* ═══ AFFICHAGE FIXE ═══ */
+.pin{position:sticky;top:0;z-index:50;background:var(--surface);
+  border-bottom:1px solid var(--line);padding:11px 0 10px;
+  box-shadow:0 8px 20px rgba(0,0,0,.45)}
+.pin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.pin-cell{background:var(--surface2);border-radius:10px;padding:9px 5px;text-align:center;
+  border-top:3px solid var(--set);cursor:pointer;border-left:0;border-right:0;border-bottom:0;
+  font-family:inherit;display:block;width:100%;transition:background .12s}
+.pin-cell:active{background:#323945}
+.pin-cell:focus-visible{outline:2px solid var(--set);outline-offset:2px}
+.pin-lab{font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.pin-val{font-size:1.7rem;font-weight:800;color:var(--set);line-height:1.1;letter-spacing:-.02em}
+.pin-unit{font-size:.6rem;color:var(--dim)}
+.pin-q{margin-top:7px;background:var(--surface2);border-radius:10px;padding:10px;
+  border-top:3px solid var(--ok);cursor:pointer;border-left:0;border-right:0;border-bottom:0;
+  font-family:inherit;display:block;width:100%;text-align:center;transition:background .12s}
+.pin-q:active{background:#323945}
+.pin-q:focus-visible{outline:2px solid var(--ok);outline-offset:2px}
+.pin-q .pin-val{font-size:2.4rem;color:var(--ok)}
+.pin-q.warn{border-top-color:var(--bad)}
+.pin-q.warn .pin-val{color:var(--bad)}
+.pin-msg{font-size:.72rem;color:var(--muted);line-height:1.35;margin-top:2px}
+.flash{animation:flash .8s ease}
+@keyframes flash{0%,100%{border-color:var(--line)}30%{border-color:var(--set)}}
+
+/* ═══ CHAMPS ═══ */
+.step{margin:20px 0}
+.step-h{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.field{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:11px 13px;margin-bottom:9px}
+.field-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.field-lab{font-size:.82rem;font-weight:600}
+.field-unit{font-size:.68rem;color:var(--dim)}
+.field-row{display:flex;align-items:center;gap:8px}
+.field input[type=number]{flex:1;background:var(--bg);border:1px solid var(--line);
+  border-radius:9px;padding:11px 12px;color:var(--set);font-size:1.45rem;font-weight:800;
+  font-family:inherit;font-variant-numeric:tabular-nums;min-width:0}
+.field input[type=number]:focus{outline:none;border-color:var(--set)}
+.stepbtn{width:46px;height:46px;flex:none;border:0;border-radius:9px;background:var(--surface2);
+  color:var(--text);font-size:1.4rem;cursor:pointer;display:flex;align-items:center;
+  justify-content:center;font-family:inherit}
+.stepbtn:active{background:var(--set);color:#15181D}
+
+.param{display:flex;align-items:center;gap:10px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin-bottom:8px}
+.param label{font-size:.75rem;color:var(--muted);flex:1}
+.param input{width:96px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+  padding:8px 9px;color:var(--text);font-size:.92rem;font-family:inherit;
+  font-variant-numeric:tabular-nums;text-align:right}
+.param input:focus{outline:none;border-color:var(--set)}
+.param .u{font-size:.72rem;color:var(--dim);width:36px}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:9px}
+summary{padding:13px 14px;cursor:pointer;font-size:.84rem;font-weight:600;
+  display:flex;align-items:center;gap:9px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"▾";margin-left:auto;color:var(--dim);transition:transform .15s}
+details[open] summary::after{transform:rotate(180deg)}
+details[open] summary{border-bottom:1px solid var(--line)}
+.d-body{padding:13px 14px}
+
+.note{font-size:.74rem;color:var(--muted);line-height:1.55;border-left:2px solid var(--line);
+  padding-left:11px;margin-top:10px}
+.note b{color:var(--text)}
+.chip{background:var(--surface2);border:1px solid var(--line);border-radius:7px;padding:8px 12px;
+  font-size:.78rem;color:var(--muted);cursor:pointer;font-family:inherit;min-height:38px}
+.chip:active{background:var(--set);color:#15181D}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.foot{font-size:.72rem;color:var(--dim);line-height:1.6;margin-top:22px;padding-top:14px;
+  border-top:1px solid var(--line)}
+.foot b{color:var(--muted)}
+@media(max-width:430px){.pin-val{font-size:1.3rem}.pin-lab{font-size:.53rem}
+  .pin-unit{font-size:.54rem}.pin-grid{gap:4px}.pin-cell{padding:8px 3px}}
+@media(max-width:400px){.field input[type=number]{font-size:1.2rem}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <h1>Calculateur libre</h1>
+    <button type="button" id="reset">Réinitialiser</button>
+  </div>
+</div>
+
+<div class="pin">
+  <div class="wrap">
+    <div class="pin-grid">
+      <button class="pin-cell" type="button" data-goto="N">
+        <div class="pin-lab">Meule tr/min</div>
+        <div class="pin-val" id="pN">—</div><div class="pin-unit">tr/min</div></button>
+      <button class="pin-cell" type="button" data-goto="Vs">
+        <div class="pin-lab">Meule m/s</div>
+        <div class="pin-val" id="pVs">—</div><div class="pin-unit">m/s</div></button>
+      <button class="pin-cell" type="button" data-goto="Nw">
+        <div class="pin-lab">Pièce tr/min</div>
+        <div class="pin-val" id="pNw">—</div><div class="pin-unit">tr/min</div></button>
+      <button class="pin-cell" type="button" data-goto="cadran">
+        <div class="pin-lab">Cadran</div>
+        <div class="pin-val" id="pCad">—</div><div class="pin-unit">repère</div></button>
+    </div>
+    <button class="pin-q" type="button" id="pinQ" data-goto="q">
+      <div class="pin-lab">Ratio q</div>
+      <div class="pin-val" id="pQ">—</div>
+      <div class="pin-msg" id="pMsg">—</div>
+    </button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="step">
+    <div class="step-h">Diamètres — mm</div>
+    <div class="field">
+      <div class="field-top"><span class="field-lab">Ø meule — mm</span>
+        <span class="field-unit">millimètres</span></div>
+      <div class="field-row">
+        <button class="stepbtn" type="button" data-adj="D" data-d="-10">−</button>
+        <input type="number" id="D" inputmode="decimal" step="1">
+        <button class="stepbtn" type="button" data-adj="D" data-d="10">+</button>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-top"><span class="field-lab">Ø pièce — mm</span>
+        <span class="field-unit">millimètres</span></div>
+      <div class="field-row">
+        <button class="stepbtn" type="button" data-adj="Dw" data-d="-10">−</button>
+        <input type="number" id="Dw" inputmode="decimal" step="1">
+        <button class="stepbtn" type="button" data-adj="Dw" data-d="10">+</button>
+      </div>
+      <div class="note">Ces deux diamètres relient les tr/min aux vitesses. Changer le Ø meule
+        conserve la rotation meule ; changer le Ø pièce conserve la rotation pièce.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-h">Meule</div>
+    <div class="field">
+      <div class="field-top"><span class="field-lab">Vitesse de rotation — tr/min</span>
+        <span class="field-unit">tours par minute</span></div>
+      <div class="field-row">
+        <button class="stepbtn" type="button" data-adj="N" data-d="-10">−</button>
+        <input type="number" id="N" inputmode="decimal" step="1">
+        <button class="stepbtn" type="button" data-adj="N" data-d="10">+</button>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-top"><span class="field-lab">Vitesse de coupe — m/s</span>
+        <span class="field-unit">mètres par seconde</span></div>
+      <div class="field-row">
+        <button class="stepbtn" type="button" data-adj="Vs" data-d="-0.5">−</button>
+        <input type="number" id="Vs" inputmode="decimal" step="0.1">
+        <button class="stepbtn" type="button" data-adj="Vs" data-d="0.5">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-h">Pièce</div>
+    <div class="field">
+      <div class="field-top"><span class="field-lab">Vitesse — m/min</span>
+        <span class="field-unit">mètres par minute</span></div>
+      <div class="field-row">
+        <button class="stepbtn" type="button" data-adj="Vw" data-d="-1">−</button>
+        <input type="number" id="Vw" inputmode="decimal" step="0.1">
+        <button class="stepbtn" type="button" data-adj="Vw" data-d="1">+</button>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-top"><span class="field-lab">Vitesse de rotation — tr/min</span>
+        <span class="field-unit">tours par minute</span></div>
+      <div class="field-row">
+        <button class="stepbtn" type="button" data-adj="Nw" data-d="-1">−</button>
+        <input type="number" id="Nw" inputmode="decimal" step="0.1">
+        <button class="stepbtn" type="button" data-adj="Nw" data-d="1">+</button>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-top"><span class="field-lab">Cadran — repère</span>
+        <span class="field-unit">position du levier</span></div>
+      <div class="field-row">
+        <button class="stepbtn" type="button" data-adj="cadran" data-d="-0.5">−</button>
+        <input type="number" id="cadran" inputmode="decimal" step="0.1">
+        <button class="stepbtn" type="button" data-adj="cadran" data-d="0.5">+</button>
+      </div>
+      <div class="note" id="cadranNote"></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-h">Ratio — sans unité</div>
+    <div class="field">
+      <div class="field-top"><span class="field-lab">q — sans unité</span>
+        <span class="field-unit">Vs ÷ Vw</span></div>
+      <div class="field-row">
+        <button class="stepbtn" type="button" data-adj="q" data-d="-1">−</button>
+        <input type="number" id="q" inputmode="decimal" step="1">
+        <button class="stepbtn" type="button" data-adj="q" data-d="1">+</button>
+      </div>
+      <div class="note">Modifier q ajuste la <b>vitesse pièce</b> ; la meule ne bouge pas.</div>
+    </div>
+  </div>
+
+  <details>
+    <summary>⊞ Calibration du cadran</summary>
+    <div class="d-body">
+      <div class="note" style="margin-top:0">Repère de cadran ↔ tr/min mesuré au chronomètre.
+        Sans au moins deux points, le champ « Cadran » ne peut pas convertir.</div>
+      <div class="param" style="margin-top:10px"><label for="calP">Repère</label>
+        <input type="number" id="calP" inputmode="decimal" step="0.1"></div>
+      <div class="param"><label for="calN">Tr/min mesuré</label>
+        <input type="number" id="calN" inputmode="decimal" step="0.1"></div>
+      <button class="chip" type="button" id="calAdd" style="width:100%">+ Ajouter ce point</button>
+      <div id="calList" style="margin-top:10px"></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>⏱ Mesurer au chronomètre</summary>
+    <div class="d-body">
+      <div class="param"><label for="cTurns">Tours comptés</label>
+        <input type="number" id="cTurns" inputmode="decimal" step="1"></div>
+      <div class="param"><label for="cSecs">Temps</label>
+        <input type="number" id="cSecs" inputmode="decimal" step="0.01"><span class="u">s</span></div>
+      <div class="note" id="cOut">Résultat : —</div>
+      <div class="chips">
+        <button class="chip" type="button" id="cToN">→ Meule</button>
+        <button class="chip" type="button" id="cToNw">→ Pièce</button>
+        <button class="chip" type="button" id="cToCal">→ Cadran</button>
+      </div>
+    </div>
+  </details>
+
+  <div class="foot">
+    <b>Tous les champs sont liés.</b> Modifier n'importe lequel recalcule instantanément tous les
+    autres. Les valeurs affichées au démarrage sont un point de départ cohérent — écrase-les
+    librement.<br><br>
+    Aucune limite de meule n'est appliquée : respecte les marquages de la meule que tu utilises.
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var PI = Math.PI;
+var $ = function(id){ return document.getElementById(id); };
+
+/* ═══════════ ÉTAT CANONIQUE ═══════════
+   Deux seules valeurs de référence : Vs (meule) et Vw (pièce).
+   Tout le reste — N, Nw, cadran, q — en découle.
+   Chaque saisie met à jour Vs ou Vw, puis on réaffiche tout.        */
+var S = { D:760, Dw:150, Vs:null, Vw:null };
+var CAL = [];
+
+function DEFAULTS(){
+  S.D = 760; S.Dw = 150;
+  S.Vs = PI * S.D * 600 / 60000;      // 600 tr/min meule
+  // calibration de depart (Landis) — modifiable ou supprimable librement
+  CAL = [ {p:1, n:42}, {p:7, n:84}, {p:14, n:153} ];
+  S.Vw = PI * S.Dw * 42 / 1000;       // piece calee sur le repere 1 du cadran
+}
+
+/* ═══════════ SAUVEGARDE ═══════════
+   Le stockage peut etre indisponible (navigation privee, fichier local
+   restreint, previsualisation). Dans ce cas l'outil fonctionne quand
+   meme, simplement sans memoriser d'une ouverture a l'autre.          */
+var KEY = "rectif-calc-v1";
+var canStore = null;
+
+function storeOK(){
+  if (canStore !== null) return canStore;
+  try {
+    window.localStorage.setItem(KEY + "-test", "1");
+    window.localStorage.removeItem(KEY + "-test");
+    canStore = true;
+  } catch (e) { canStore = false; }
+  return canStore;
+}
+
+function save(){
+  if (!storeOK()) return;
+  try {
+    window.localStorage.setItem(KEY, JSON.stringify({ S: S, CAL: CAL }));
+  } catch (e) { /* quota ou acces refuse : on continue sans sauvegarder */ }
+}
+
+function load(){
+  if (!storeOK()) return false;
+  try {
+    var raw = window.localStorage.getItem(KEY);
+    if (!raw) return false;
+    var o = JSON.parse(raw);
+    if (!o || !o.S) return false;
+    // on ne reprend que des nombres valides, sinon valeur par defaut
+    ["D","Dw","Vs","Vw"].forEach(function(k){
+      if (typeof o.S[k] === "number" && isFinite(o.S[k])) S[k] = o.S[k];
+    });
+    if (Array.isArray(o.CAL)){
+      CAL = o.CAL.filter(function(c){
+        return c && isFinite(c.p) && isFinite(c.n);
+      });
+    }
+    return true;
+  } catch (e) { return false; }
+}
+
+function clearSaved(){
+  if (!storeOK()) return;
+  try { window.localStorage.removeItem(KEY); } catch (e) {}
+}
+
+/* ---------- calibration cadran ---------- */
+function calSort(){ CAL.sort(function(a,b){ return a.p - b.p; }); }
+function calNforP(p){
+  if (CAL.length < 2) return null;
+  calSort();
+  for (var i=0;i<CAL.length-1;i++){
+    var a=CAL[i], b=CAL[i+1];
+    if (p>=a.p && p<=b.p && b.p!==a.p) return a.n + (b.n-a.n)*(p-a.p)/(b.p-a.p);
+  }
+  var a,b;
+  if (p < CAL[0].p){ a=CAL[0]; b=CAL[1]; } else { a=CAL[CAL.length-2]; b=CAL[CAL.length-1]; }
+  return a.n + (b.n-a.n)/(b.p-a.p) * (p-a.p);
+}
+function calPforN(n){
+  if (CAL.length < 2) return null;
+  calSort();
+  for (var i=0;i<CAL.length-1;i++){
+    var a=CAL[i], b=CAL[i+1];
+    var lo=Math.min(a.n,b.n), hi=Math.max(a.n,b.n);
+    if (n>=lo && n<=hi && b.n!==a.n) return a.p + (b.p-a.p)*(n-a.n)/(b.n-a.n);
+  }
+  var a,b;
+  if (n < CAL[0].n){ a=CAL[0]; b=CAL[1]; } else { a=CAL[CAL.length-2]; b=CAL[CAL.length-1]; }
+  var sl = (b.p-a.p)/(b.n-a.n);
+  return isFinite(sl) ? a.p + sl*(n-a.n) : null;
+}
+
+/* ---------- vues dérivées de l'état ---------- */
+function getN(){  return (S.Vs===null || !S.D)  ? null : S.Vs * 60000 / (PI * S.D); }
+function getNw(){ return (S.Vw===null || !S.Dw) ? null : S.Vw * 1000  / (PI * S.Dw); }
+function getCadran(){ var nw = getNw(); return nw===null ? null : calPforN(nw); }
+function getQ(){ return (S.Vs===null || !S.Vw) ? null : (S.Vs * 60) / S.Vw; }
+
+/* ---------- formatage ---------- */
+function fmtIn(v, d){           // pour <input type=number> : point decimal obligatoire
+  if (v===null || v===undefined || !isFinite(v)) return "";
+  var m = Math.pow(10, d);
+  return String(Math.round(v*m)/m);
+}
+function fmtTxt(v, d){          // pour l'affichage : virgule francaise
+  if (v===null || v===undefined || !isFinite(v)) return "—";
+  var m = Math.pow(10, d);
+  return String(Math.round(v*m)/m).replace(".", ",");
+}
+function num(id){ var v = parseFloat($(id).value); return isFinite(v) ? v : null; }
+
+/* ═══════════ SAISIE → ÉTAT ═══════════ */
+function onEdit(source){
+  var v = num(source);
+
+  if (source === "N"){
+    S.Vs = (v===null || !S.D) ? null : PI * S.D * v / 60000;
+  }
+  else if (source === "Vs"){
+    S.Vs = v;
+  }
+  else if (source === "Vw"){
+    S.Vw = v;
+  }
+  else if (source === "Nw"){
+    S.Vw = (v===null || !S.Dw) ? null : PI * S.Dw * v / 1000;
+  }
+  else if (source === "cadran"){
+    var nw = (v===null) ? null : calNforP(v);
+    if (nw !== null && S.Dw) S.Vw = PI * S.Dw * nw / 1000;
+  }
+  else if (source === "q"){
+    // on ajuste la piece pour obtenir ce q ; la meule ne bouge pas
+    if (v && S.Vs !== null) S.Vw = (S.Vs * 60) / v;
+  }
+  else if (source === "D"){
+    // on garde la rotation meule affichee, Vs suit le nouveau diametre
+    var nCur = num("N");
+    S.D = v;
+    if (nCur !== null && S.D) S.Vs = PI * S.D * nCur / 60000;
+  }
+  else if (source === "Dw"){
+    // on garde la rotation piece affichee, Vw suit le nouveau diametre
+    var nwCur = num("Nw");
+    S.Dw = v;
+    if (nwCur !== null && S.Dw) S.Vw = PI * S.Dw * nwCur / 1000;
+  }
+
+  render(source);
+}
+
+/* ═══════════ ÉTAT → AFFICHAGE ═══════════
+   On réécrit tous les champs sauf celui en cours de frappe.        */
+function render(skip){
+  var N = getN(), Nw = getNw(), cad = getCadran(), q = getQ();
+
+  if (skip !== "N")      $("N").value      = fmtIn(N, 0);
+  if (skip !== "Vs")     $("Vs").value     = fmtIn(S.Vs, 2);
+  if (skip !== "Vw")     $("Vw").value     = fmtIn(S.Vw, 2);
+  if (skip !== "Nw")     $("Nw").value     = fmtIn(Nw, 2);
+  if (skip !== "cadran") $("cadran").value = fmtIn(cad, 2);
+  if (skip !== "q")      $("q").value      = fmtIn(q, 1);
+  if (skip !== "D")      $("D").value      = fmtIn(S.D, 0);
+  if (skip !== "Dw")     $("Dw").value     = fmtIn(S.Dw, 0);
+
+  $("pN").textContent  = fmtTxt(N, 0);
+  $("pVs").textContent = fmtTxt(S.Vs, 2);
+  $("pNw").textContent = fmtTxt(Nw, 1);
+  $("pCad").textContent = fmtTxt(cad, 1);
+  $("pQ").textContent  = fmtTxt(q, 1);
+
+  var pinQ = $("pinQ"), msg = $("pMsg");
+  if (q === null){
+    pinQ.className = "pin-q"; msg.textContent = "Renseigner meule et pièce";
+  } else if (q >= 60 && q <= 100){
+    pinQ.className = "pin-q"; msg.textContent = "Zone de travail (60 à 100)";
+  } else if (q < 60){
+    pinQ.className = "pin-q warn"; msg.textContent = "Sous la zone — usure meule rapide";
+  } else {
+    pinQ.className = "pin-q warn"; msg.textContent = "Au-dessus — risque de glaçage";
+  }
+
+  if (CAL.length < 2){
+    $("cadranNote").innerHTML = "Cadran <b>non calibré</b> — ajouter au moins deux points " +
+      "dans « Calibration du cadran » pour l'utiliser.";
+  } else {
+    calSort();
+    $("cadranNote").innerHTML = "Calibré entre les repères <b>" + CAL[0].p + "</b> et <b>" +
+      CAL[CAL.length-1].p + "</b>. Hors de cette plage, valeur extrapolée.";
+  }
+  renderCal();
+  save();
+}
+
+function renderCal(){
+  calSort();
+  var h = "";
+  CAL.forEach(function(c, i){
+    h += "<div class='param'><label>Repère " + c.p + "</label>" +
+         "<input type='text' readonly value='" + fmtTxt(c.n,1) +
+         " tr/min' style='text-align:right;color:var(--muted)'>" +
+         "<button class='stepbtn' style='width:36px;height:36px;font-size:1rem' " +
+         "data-delcal='" + i + "'>✕</button></div>";
+  });
+  $("calList").innerHTML = h;
+}
+
+/* ═══════════ ÉCOUTEURS ═══════════ */
+["N","Vs","Vw","Nw","cadran","q","D","Dw"].forEach(function(id){
+  $(id).addEventListener("input", function(){ onEdit(id); });
+});
+
+document.addEventListener("click", function(e){
+  var g = e.target.closest ? e.target.closest("[data-goto]") : null;
+  if (g){
+    var id = g.getAttribute("data-goto");
+    var el = $(id);
+    if (!el) return;
+    // on decale du haut pour ne pas passer sous la barre collante
+    var pinH = document.querySelector(".pin").getBoundingClientRect().height;
+    var y = el.getBoundingClientRect().top + window.pageYOffset - pinH - 24;
+    window.scrollTo({ top: y < 0 ? 0 : y, behavior: "smooth" });
+    var box = el.closest(".field");
+    if (box){
+      box.classList.remove("flash");
+      void box.offsetWidth;            // relance l'animation
+      box.classList.add("flash");
+    }
+    setTimeout(function(){ el.focus({ preventScroll:true }); el.select && el.select(); }, 320);
+    return;
+  }
+
+  var b = e.target.closest ? e.target.closest("[data-adj]") : null;
+  if (b){
+    var id = b.getAttribute("data-adj");
+    var step = parseFloat(b.getAttribute("data-d"));
+    var cur = num(id);
+    if (cur === null) cur = 0;
+    $(id).value = fmtIn(cur + step, id === "N" ? 0 : 2);
+    onEdit(id);
+    return;
+  }
+  var del = e.target.closest ? e.target.closest("[data-delcal]") : null;
+  if (del){ CAL.splice(+del.getAttribute("data-delcal"), 1); render(); }
+});
+
+$("reset").addEventListener("click", function(){ clearSaved(); DEFAULTS(); render(); });
+
+$("calAdd").addEventListener("click", function(){
+  var p = parseFloat($("calP").value), n = parseFloat($("calN").value);
+  if (!isFinite(p) || !isFinite(n)) return;
+  CAL = CAL.filter(function(c){ return c.p !== p; });
+  CAL.push({ p:p, n:n });
+  $("calP").value = ""; $("calN").value = "";
+  render();
+});
+
+var chronoN = 0;
+function chronoCalc(){
+  var t = parseFloat($("cTurns").value), s = parseFloat($("cSecs").value);
+  if (!(t > 0 && s > 0)){ $("cOut").innerHTML = "Résultat : —"; chronoN = 0; return; }
+  chronoN = t * 60 / s;
+  $("cOut").innerHTML = "Résultat : <b>" + fmtTxt(chronoN,1) + " tr/min</b> — précision ≈ ±" +
+    fmtTxt(0.3/s*100, 1) + " %";
+}
+$("cTurns").addEventListener("input", chronoCalc);
+$("cSecs").addEventListener("input", chronoCalc);
+$("cToN").addEventListener("click", function(){
+  if (chronoN <= 0) return;
+  $("N").value = fmtIn(chronoN, 0); onEdit("N");
+});
+$("cToNw").addEventListener("click", function(){
+  if (chronoN <= 0) return;
+  $("Nw").value = fmtIn(chronoN, 2); onEdit("Nw");
+});
+$("cToCal").addEventListener("click", function(){
+  if (chronoN <= 0) return;
+  var p = prompt("Repère du cadran pour " + fmtTxt(chronoN,1) + " tr/min :");
+  var pp = parseFloat(p);
+  if (!isFinite(pp)) return;
+  CAL = CAL.filter(function(c){ return c.p !== pp; });
+  CAL.push({ p:pp, n:chronoN });
+  render();
+});
+
+DEFAULTS();
+load();          // ecrase les defauts si une sauvegarde existe
+render();
+
+if (!storeOK()){
+  var w = document.createElement("div");
+  w.className = "note";
+  w.style.margin = "14px 0 0";
+  w.innerHTML = "<b>Sauvegarde indisponible ici.</b> Les réglages ne seront pas conservés " +
+                "à la fermeture. Sur téléphone, ouvrir le fichier depuis le navigateur puis " +
+                "l'ajouter à l'écran d'accueil pour que la mémorisation fonctionne.";
+  var foot = document.querySelector(".foot");
+  if (foot) foot.parentNode.insertBefore(w, foot);
+}
+})();
+</script>
+</body>
+</html>
