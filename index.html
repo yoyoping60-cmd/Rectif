@@ -309,7 +309,7 @@ function DEFAULTS(){
    Le stockage peut etre indisponible (navigation privee, fichier local
    restreint, previsualisation). Dans ce cas l'outil fonctionne quand
    meme, simplement sans memoriser d'une ouverture a l'autre.          */
-var KEY = "rectif-calc-v1";
+var KEY = "rectif-calc-v2";   // v2 : calibration cadran = plaque poulie B (remplace le chrono v1)
 var canStore = null;
 
 function storeOK(){
@@ -331,6 +331,7 @@ function save(){
 
 function load(){
   if (!storeOK()) return false;
+  try { window.localStorage.removeItem("rectif-calc-v1"); } catch (e) {}  // purge ancienne version
   try {
     var raw = window.localStorage.getItem(KEY);
     if (!raw) return false;
