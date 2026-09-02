@@ -294,8 +294,15 @@ function DEFAULTS(){
   S.D = 760; S.Dw = 150;
   S.Vs = PI * S.D * 600 / 60000;      // 600 tr/min meule
   // calibration de depart (Landis) — modifiable ou supprimable librement
-  CAL = [ {p:1, n:42}, {p:7, n:84}, {p:14, n:153} ];
-  S.Vw = PI * S.Dw * 42 / 1000;       // piece calee sur le repere 1 du cadran
+  // calibration de depart (Landis) — plaque "Division du curseur / Vitesse de
+  // tete porte-piece", poulie B montee. Remplace les anciennes valeurs chrono.
+  CAL = [
+    {p:1,n:36},{p:2,n:40},{p:3,n:48},{p:4,n:56},{p:5,n:64},
+    {p:6,n:72},{p:7,n:80},{p:8,n:88},{p:9,n:96},{p:10,n:104},
+    {p:11,n:112},{p:12,n:120},{p:13,n:128},{p:14,n:136},{p:15,n:144},
+    {p:16,n:152},{p:17,n:160},{p:18,n:168},{p:19,n:176},{p:20,n:182}
+  ];
+  S.Vw = PI * S.Dw * 36 / 1000;       // piece calee sur le repere 1 du cadran (plaque, poulie B)
 }
 
 /* ═══════════ SAUVEGARDE ═══════════
